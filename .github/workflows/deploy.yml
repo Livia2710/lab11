@@ -30,6 +30,7 @@ jobs:
           ssh -i ~/.ssh/id_rsa \
             ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
             "cd ~/app && \
+             sudo systemctl stop nginx || true && \
              docker stop onepage || true && \
              docker rm onepage || true && \
              docker build -t onepage . && \
